@@ -14,18 +14,29 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <header>
-          <h2>My Website</h2>
+      <body className="min-h-screen bg-gray-100 text-gray-800">
+        <header className="bg-blue-700 text-white shadow-md">
+          <div className="mx-auto flex max-w-6xl items-center justify-between p-5">
+            <h2 className="text-2xl font-bold">My Website</h2>
 
-          <nav>
-            <Link href="/">Home</Link>
-            <Link href="/about">About</Link>
-            <Link href="/contact">Contact</Link>
-          </nav>
+            <nav className="flex gap-6">
+              <Link href="/" className="hover:text-yellow-300">
+                Home
+              </Link>
+
+              <Link href="/about" className="hover:text-yellow-300">
+                About
+              </Link>
+
+              <Link href="/contact" className="hover:text-yellow-300">
+                Contact
+              </Link>
+            </nav>
+          </div>
         </header>
 
         {children}
+
       </body>
     </html>
   );
