@@ -24,8 +24,7 @@ export default function Footer() {
 
       <div className="mt-6 border-t border-gray-700 pt-5">
         <p className="text-xs text-gray-500">
-          © {new Date().getFullYear()} MISAB NOOR ACADEMY JANI.
-          All rights reserved.
+          © 2026 MISAB NOOR ACADEMY JANI. All rights reserved
         </p>
       </div>
 
