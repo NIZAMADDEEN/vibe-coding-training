@@ -1,13 +1,13 @@
 
 import SchoolCard from "@/components/SchoolCard";
 
-
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
 
       {/* Hero Section */}
       <section className="bg-green-800 px-6 py-24 text-center text-white">
+
         <p className="mb-3 font-semibold uppercase tracking-widest text-yellow-300">
           Welcome to
         </p>
@@ -26,6 +26,7 @@ export default function Home() {
         >
           Explore Admissions
         </a>
+
       </section>
 
       {/* About Section */}
@@ -33,6 +34,7 @@ export default function Home() {
         id="about"
         className="mx-auto max-w-6xl px-6 py-16"
       >
+
         <h2 className="mb-5 text-center text-3xl font-bold text-green-800">
           About Our School
         </h2>
@@ -42,10 +44,12 @@ export default function Home() {
           Primary education. Our motto is Together We Grow,
           Together We Learn!
         </p>
+
       </section>
 
       {/* School Sections */}
       <section className="bg-gray-50 px-6 py-16">
+
         <h2 className="mb-10 text-center text-3xl font-bold text-green-800">
           Our School Sections
         </h2>
@@ -63,6 +67,7 @@ export default function Home() {
           />
 
         </div>
+
       </section>
 
       {/* Admissions Section */}
@@ -70,6 +75,7 @@ export default function Home() {
         id="admissions"
         className="bg-green-800 px-6 py-16 text-center text-white"
       >
+
         <h2 className="mb-4 text-3xl font-bold">
           Admissions
         </h2>
@@ -84,27 +90,8 @@ export default function Home() {
         >
           Contact Us
         </a>
+
       </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 px-6 py-8 text-center text-white">
-        <h3 className="mb-2 text-xl font-bold">
-          MISAB NOOR ACADEMY JANI
-        </h3>
-
-        <p className="text-sm text-gray-300">
-          Kofar Yamma, Marna, Jani, Mani LGA,
-          Katsina State, Nigeria.
-        </p>
-
-        <p className="mt-3 text-sm text-gray-300">
-          misabnooracademy@gmail.com
-        </p>
-
-        <p className="mt-5 text-xs text-gray-400">
-          Together We Grow, Together We Learn!
-        </p>
-      </footer>
 
     </main>
   );

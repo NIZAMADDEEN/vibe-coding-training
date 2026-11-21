@@ -1,10 +1,14 @@
+
 import type { Metadata } from "next";
 import "./globals.css";
-import Link from "next/link";
+
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "My First Next.js Website",
-  description: "Learning Next.js step by step",
+  title: "MISAB NOOR ACADEMY JANI",
+  description:
+    "Together We Grow, Together We Learn! Nursery and Primary School.",
 };
 
 export default function RootLayout({
@@ -14,28 +18,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-gray-100 text-gray-800">
-        <header className="bg-blue-700 text-white shadow-md">
-          <div className="mx-auto flex max-w-6xl items-center justify-between p-5">
-            <h2 className="text-2xl font-bold">My Website</h2>
+      <body className="flex min-h-screen flex-col bg-white">
 
-            <nav className="flex gap-6">
-              <Link href="/" className="hover:text-yellow-300">
-                Home
-              </Link>
+        <Header />
 
-              <Link href="/about" className="hover:text-yellow-300">
-                About
-              </Link>
+        <div className="flex-1">
+          {children}
+        </div>
 
-              <Link href="/contact" className="hover:text-yellow-300">
-                Contact
-              </Link>
-            </nav>
-          </div>
-        </header>
-
-        {children}
+        <Footer />
 
       </body>
     </html>
