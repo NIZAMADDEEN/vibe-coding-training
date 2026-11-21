@@ -1,4 +1,7 @@
 
+import SchoolCard from "@/components/SchoolCard";
+
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
@@ -26,7 +29,10 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="mx-auto max-w-6xl px-6 py-16">
+      <section
+        id="about"
+        className="mx-auto max-w-6xl px-6 py-16"
+      >
         <h2 className="mb-5 text-center text-3xl font-bold text-green-800">
           About Our School
         </h2>
@@ -46,31 +52,24 @@ export default function Home() {
 
         <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
 
-          <div className="rounded-xl bg-white p-8 shadow-md">
-            <h3 className="mb-3 text-2xl font-bold text-green-700">
-              Nursery Section
-            </h3>
-            <p className="text-gray-600">
-              Discover our Nursery section and the beginning
-              of a child's learning journey.
-            </p>
-          </div>
+          <SchoolCard
+            title="Nursery Section"
+            description="Discover our Nursery section and the beginning of a child's learning journey."
+          />
 
-          <div className="rounded-xl bg-white p-8 shadow-md">
-            <h3 className="mb-3 text-2xl font-bold text-green-700">
-              Primary Section
-            </h3>
-            <p className="text-gray-600">
-              Explore our Primary section and opportunities
-              for continued learning.
-            </p>
-          </div>
+          <SchoolCard
+            title="Primary Section"
+            description="Explore our Primary section and opportunities for continued learning."
+          />
 
         </div>
       </section>
 
       {/* Admissions Section */}
-      <section id="admissions" className="bg-green-800 px-6 py-16 text-center text-white">
+      <section
+        id="admissions"
+        className="bg-green-800 px-6 py-16 text-center text-white"
+      >
         <h2 className="mb-4 text-3xl font-bold">
           Admissions
         </h2>
