@@ -1,21 +1,27 @@
 
 function App() {
   return (
-    <div>
-      <h1>My React Learning Journey</h1>
+    <div className="app">
 
-      <h2>About Me</h2>
-      <p>I am learning React and Next.js.</p>
+      <header className="header">
+        <h1>My First React Application</h1>
+        <p>Welcome to my development journey</p>
+      </header>
 
-      <h2>My Skills</h2>
-      <ul>
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
-        <li>React</li>
-      </ul>
+      <main className="content">
+        <h2>About My Application</h2>
+        <p>
+          I am learning how to build modern
+          applications using React.
+        </p>
 
-      <button>Learn More</button>
+        <button>Get Started</button>
+      </main>
+
+      <footer className="footer">
+        <p>Built with React and Vite</p>
+      </footer>
+
     </div>
   )
 }
