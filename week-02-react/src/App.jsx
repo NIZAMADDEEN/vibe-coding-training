@@ -1,31 +1,40 @@
 
 import { useState } from 'react'
+import Header from './components/Header'
+import StudentCard from './components/StudentCard'
+import './App.css'
 
 function App() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [department, setDepartment] = useState('')
   const [level, setLevel] = useState('')
+  const [search, setSearch] = useState('')
   const [students, setStudents] = useState([])
   const [message, setMessage] = useState('')
 
   function handleSubmit(event) {
     event.preventDefault()
 
-    if (!name.trim() || !email.trim() || !department || !level) {
+    if (
+      !name.trim() ||
+      !email.trim() ||
+      !department ||
+      !level
+    ) {
       setMessage('Please complete all fields.')
       return
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setMessage('Please enter a valid email address.')
+      setMessage('Enter a valid email address.')
       return
     }
 
     const newStudent = {
-      id: Date.now(),
-      name,
-      email,
+      id: crypto.randomUUID(),
+      name: name.trim(),
+      email: email.trim(),
       department,
       level
     }
@@ -45,75 +54,115 @@ function App() {
     )
   }
 
+  const filteredStudents = students.filter(student =>
+    student.name.toLowerCase().includes(search.toLowerCase())
+  )
+
   return (
-    <div>
-      <h1>Student Registration System</h1>
+    <div className="app">
+      <Header />
 
-      <h2>Register New Student</h2>
+      <main className="container">
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Student Name"
-          value={name}
-          onChange={event => setName(event.target.value)}
-        />
+        <section className="stats">
+          <h2>Total Students: {students.length}</h2>
+        </section>
 
-        <input
-          type="email"
-          placeholder="Email Address"
-          value={email}
-          onChange={event => setEmail(event.target.value)}
-        />
+        <section className="form-section">
+          <h2>Register New Student</h2>
 
-        <select
-          value={department}
-          onChange={event => setDepartment(event.target.value)}
-        >
-          <option value="">Select Department</option>
-          <option value="Computer Science">Computer Science</option>
-          <option value="Software Engineering">
-            Software Engineering
-          </option>
-          <option value="Information Technology">
-            Information Technology
-          </option>
-        </select>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Student Name"
+              value={name}
+              onChange={e => setName(e.target.value)}
+            />
 
-        <select
-          value={level}
-          onChange={event => setLevel(event.target.value)}
-        >
-          <option value="">Select Level</option>
-          <option value="100 Level">100 Level</option>
-          <option value="200 Level">200 Level</option>
-          <option value="300 Level">300 Level</option>
-          <option value="400 Level">400 Level</option>
-        </select>
+            <input
+              type="email"
+              placeholder="Email Address"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
 
-        <button type="submit">Register Student</button>
-      </form>
+            <select
+              value={department}
+              onChange={e => setDepartment(e.target.value)}
+            >
+              <option value="">Select Department</option>
+              <option value="Computer Science">
+                Computer Science
+              </option>
+              <option value="Software Engineering">
+                Software Engineering
+              </option>
+              <option value="Information Technology">
+                Information Technology
+              </option>
+            </select>
 
-      {message && <p>{message}</p>}
+            <select
+              value={level}
+              onChange={e => setLevel(e.target.value)}
+            >
+              <option value="">Select Level</option>
+              <option value="100 Level">100 Level</option>
+              <option value="200 Level">200 Level</option>
+              <option value="300 Level">300 Level</option>
+              <option value="400 Level">400 Level</option>
+            </select>
 
-      <h2>Registered Students ({students.length})</h2>
-
-      {students.length === 0 ? (
-        <p>No students registered yet.</p>
-      ) : (
-        students.map(student => (
-          <div key={student.id}>
-            <h3>{student.name}</h3>
-            <p>Email: {student.email}</p>
-            <p>Department: {student.department}</p>
-            <p>Level: {student.level}</p>
-
-            <button onClick={() => removeStudent(student.id)}>
-              Remove
+            <button type="submit">
+              Register Student
             </button>
-          </div>
-        ))
-      )}
+          </form>
+
+          {message && <p>{message}</p>}
+        </section>
+
+        <section className="student-section">
+          <h2>Student Records</h2>
+
+          <input
+            type="search"
+            placeholder="Search students by name..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
+
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Level</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {filteredStudents.length > 0 ? (
+                filteredStudents.map(student => (
+                  <StudentCard
+                    key={student.id}
+                    student={student}
+                    onRemove={removeStudent}
+                  />
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5">
+                    No students found.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </section>
+
+      </main>
     </div>
   )
 }
