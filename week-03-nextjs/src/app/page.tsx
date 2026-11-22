@@ -1,5 +1,6 @@
 
 import SchoolCard from "@/components/SchoolCard";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -28,6 +29,15 @@ export default function Home() {
         </a>
 
       </section>
+      <section className="mx-auto max-w-6xl px-6 py-12">
+  <Image
+    src="/images/school-building.jpg"
+    alt="MISAB NOOR ACADEMY JANI school building"
+    width={1200}
+    height={700}
+    className="h-auto w-full rounded-2xl shadow-lg"
+  />
+</section>
 
       {/* About Section */}
       <section
