@@ -20,14 +20,12 @@ export default function ContactPage() {
 
       {/* Contact Information */}
       <section className="mx-auto max-w-5xl px-6 py-16">
-
         <h2 className="mb-10 text-center text-3xl font-bold text-green-800">
           Our Contact Information
         </h2>
 
         <div className="grid gap-8 md:grid-cols-2">
 
-          {/* Address */}
           <div className="rounded-xl bg-gray-50 p-8 shadow-sm">
             <h3 className="mb-4 text-xl font-bold text-green-700">
               School Address
@@ -40,7 +38,6 @@ export default function ContactPage() {
             </p>
           </div>
 
-          {/* Email */}
           <div className="rounded-xl bg-gray-50 p-8 shadow-sm">
             <h3 className="mb-4 text-xl font-bold text-green-700">
               Email Address
@@ -59,7 +56,6 @@ export default function ContactPage() {
 
       {/* Contact Call to Action */}
       <section className="bg-green-50 px-6 py-16 text-center">
-
         <h2 className="mb-4 text-3xl font-bold text-green-800">
           Have an Enquiry?
         </h2>
@@ -75,7 +71,6 @@ export default function ContactPage() {
         >
           Send an Email
         </a>
-
       </section>
 
     </main>

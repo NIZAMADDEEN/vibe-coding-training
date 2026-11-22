@@ -18,7 +18,7 @@ export default function Header() {
         </div>
 
         {/* Navigation */}
-        <nav className="flex flex-wrap justify-center gap-6 font-medium">
+       <nav className="flex flex-wrap items-center justify-center gap-4 text-sm font-medium sm:gap-6 sm:text-base">
           <Link href="/" className="hover:text-yellow-300">
             Home
           </Link>

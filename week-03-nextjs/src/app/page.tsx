@@ -9,28 +9,42 @@ export default function Home() {
     <main className="min-h-screen bg-white">
 
       {/* Hero Section */}
-      <section className="bg-green-800 px-6 py-24 text-center text-white">
+     
+<section
+  className="relative flex min-h-[500px] items-center justify-center bg-cover bg-center px-6 py-20 text-center text-white"
+  style={{
+    backgroundImage: "url('/images/school-building.jpg')"
+  }}
+>
+  <div className="absolute inset-0 bg-black/40"></div>
 
-        <p className="mb-3 font-semibold uppercase tracking-widest text-yellow-300">
-          Welcome to
-        </p>
+  <div className="relative z-10 mx-auto max-w-4xl">
 
-        <h1 className="mb-4 text-4xl font-bold md:text-6xl">
-          MISAB NOOR ACADEMY JANI
-        </h1>
+    <p className="mb-4 font-semibold uppercase tracking-widest text-yellow-300">
+      Nursery and Primary School
+    </p>
 
-        <p className="mb-8 text-lg text-green-100">
-          Together We Grow, Together We Learn!
-        </p>
+    <h1 className="mb-6 text-4xl font-extrabold leading-tight sm:text-5xl md:text-6xl">
+      Welcome to MISAB NOOR ACADEMY JANI
+    </h1>
 
-        <a
-          href="#admissions"
-          className="rounded-lg bg-yellow-400 px-8 py-3 font-bold text-green-900 hover:bg-yellow-300"
-        >
-          Explore Admissions
-        </a>
+    <p className="mx-auto mb-8 max-w-2xl text-lg leading-8 text-green-50">
+      Together We Grow, Together We Learn!
+      Discover a welcoming environment for children's
+      educational growth and development.
+    </p>
 
-      </section>
+    <a
+      href="/admissions"
+      className="inline-block rounded-lg bg-yellow-400 px-8 py-4 font-bold text-green-900 transition hover:bg-yellow-300"
+    >
+      Explore Admissions
+    </a>
+
+  </div>
+
+</section>
+
       <section className="mx-auto max-w-6xl px-6 py-12">
   <Image
     src="/images/school-building.jpg"
@@ -47,7 +61,7 @@ export default function Home() {
       Explore Our School Sections
     </h2>
 
-    <div className="grid gap-8 md:grid-cols-2">
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
 
       <SchoolImageCard
         title="Nursery Section"
