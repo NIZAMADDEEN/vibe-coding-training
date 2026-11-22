@@ -1,4 +1,5 @@
-﻿type SchoolCardProps = {
+
+type SchoolCardProps = {
   title: string;
   description: string;
 };

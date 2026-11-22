@@ -1,5 +1,7 @@
 
+import SchoolImageCard from "@/components/SchoolImageCard";
 import SchoolCard from "@/components/SchoolCard";
+
 import Image from "next/image";
 
 export default function Home() {
@@ -37,6 +39,30 @@ export default function Home() {
     height={700}
     className="h-auto w-full rounded-2xl shadow-lg"
   />
+</section>
+<section className="bg-gray-50 px-6 py-16">
+  <div className="mx-auto max-w-6xl">
+
+    <h2 className="mb-10 text-center text-3xl font-bold text-green-800">
+      Explore Our School Sections
+    </h2>
+
+    <div className="grid gap-8 md:grid-cols-2">
+
+      <SchoolImageCard
+        title="Nursery Section"
+        description="A welcoming introduction to early childhood learning."
+        image="/images/nursery-class.jpg"
+      />
+
+      <SchoolImageCard
+        title="Primary Section"
+        description="Supporting children's continued educational development."
+        image="/images/primary-class.jpg"
+      />
+
+    </div>
+  </div>
 </section>
 
       {/* About Section */}
