@@ -2,12 +2,16 @@
 import SchoolImageCard from "@/components/SchoolImageCard";
 import SchoolCard from "@/components/SchoolCard";
 import WelcomeButton from "@/components/WelcomeButton";
+import SupabaseTest from "@/components/SupabaseTest";
 
 import Image from "next/image";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
+      <section className="px-6 py-10">
+  <SupabaseTest />
+</section>
 
       {/* Hero Section */}
      
