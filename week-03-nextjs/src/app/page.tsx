@@ -1,6 +1,7 @@
 
 import SchoolImageCard from "@/components/SchoolImageCard";
 import SchoolCard from "@/components/SchoolCard";
+import WelcomeButton from "@/components/WelcomeButton";
 
 import Image from "next/image";
 
@@ -27,7 +28,9 @@ export default function Home() {
     <h1 className="mb-6 text-4xl font-extrabold leading-tight sm:text-5xl md:text-6xl">
       Welcome to MISAB NOOR ACADEMY JANI
     </h1>
-
+<section className="px-6 py-12 text-center">
+  <WelcomeButton />
+</section>
     <p className="mx-auto mb-8 max-w-2xl text-lg leading-8 text-green-50">
       Together We Grow, Together We Learn!
       Discover a welcoming environment for children's

@@ -9,18 +9,47 @@ export default function AdmissionForm() {
   const [studentName, setStudentName] = useState("");
   const [section, setSection] = useState("Nursery");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    setMessage(
-      `Thank you, ${parentName}. Your enquiry form has been completed successfully.`
-    );
+    setLoading(true);
+    setMessage("");
 
-    setParentName("");
-    setEmail("");
-    setStudentName("");
-    setSection("Nursery");
+    try {
+      const response = await fetch("/api/hello", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          parentName,
+          email,
+          studentName,
+          section,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error("Unable to submit enquiry.");
+      }
+
+      setMessage(
+        `Thank you, ${parentName}. Your enquiry was received successfully!`
+      );
+
+      setParentName("");
+      setEmail("");
+      setStudentName("");
+      setSection("Nursery");
+    } catch (error) {
+      setMessage("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -86,9 +115,10 @@ export default function AdmissionForm() {
 
       <button
         type="submit"
-        className="w-full rounded-lg bg-green-700 py-3 font-bold text-white hover:bg-green-800"
+        disabled={loading}
+        className="w-full rounded-lg bg-green-700 py-3 font-bold text-white hover:bg-green-800 disabled:opacity-50"
       >
-        Submit Enquiry
+        {loading ? "Submitting..." : "Submit Enquiry"}
       </button>
 
       {message && (
