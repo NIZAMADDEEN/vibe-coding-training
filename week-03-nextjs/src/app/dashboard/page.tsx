@@ -1,4 +1,5 @@
 
+import ParentManagement from "@/components/ParentManagement";
 import DatabaseTest from "@/components/DatabaseTest";
 import StudentManagement from "@/components/StudentManagement";
 import LogoutButton from "@/components/LogoutButton";
@@ -40,9 +41,12 @@ export default async function DashboardPage() {
         <p className="mt-2 text-sm text-gray-500">
           Your administrator dashboard is ready.
         </p>
+        
+
         <DatabaseTest />
-        <LogoutButton />
         <StudentManagement />
+        <ParentManagement />
+        <LogoutButton />
       </div>
     </main>
   );
