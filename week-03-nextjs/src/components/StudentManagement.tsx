@@ -9,20 +9,45 @@ type Student = {
   student_name: string;
   section: string;
   admission_date: string | null;
+  parent_id: number | null;
+};
+
+type Parent = {
+  id: number;
+  parent_name: string;
 };
 
 export default function StudentManagement() {
   const [students, setStudents] = useState<Student[]>([]);
+  const [parents, setParents] = useState<Parent[]>([]);
+
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
   const [studentName, setStudentName] = useState("");
   const [section, setSection] = useState("Nursery");
+  const [parentId, setParentId] = useState("");
 
   // Editing states
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editName, setEditName] = useState("");
   const [editSection, setEditSection] = useState("Nursery");
+
+  // READ: Fetch parents
+  async function fetchParents() {
+    const supabase = createClient();
+
+    const { data, error } = await supabase
+      .from("parents")
+      .select("id, parent_name")
+      .order("parent_name");
+
+    if (error) {
+      setMessage("Error loading parents: " + error.message);
+    } else {
+      setParents(data ?? []);
+    }
+  }
 
   // READ: Fetch students
   async function fetchStudents() {
@@ -33,7 +58,7 @@ export default function StudentManagement() {
 
     const { data, error } = await supabase
       .from("students")
-      .select("id, student_name, section, admission_date")
+      .select("id, student_name, section, admission_date, parent_id")
       .order("id", { ascending: false });
 
     if (error) {
@@ -57,14 +82,18 @@ export default function StudentManagement() {
       .insert({
         student_name: studentName,
         section: section,
+        parent_id: parentId ? Number(parentId) : null,
       });
 
     if (error) {
       setMessage("Error: " + error.message);
     } else {
       setMessage("Student added successfully!");
+
       setStudentName("");
       setSection("Nursery");
+      setParentId("");
+
       await fetchStudents();
     }
   }
@@ -120,9 +149,11 @@ export default function StudentManagement() {
       setMessage("Error updating student: " + error.message);
     } else {
       setMessage("Student updated successfully!");
+
       setEditingId(null);
       setEditName("");
       setEditSection("Nursery");
+
       await fetchStudents();
     }
   }
@@ -151,6 +182,22 @@ export default function StudentManagement() {
         >
           <option value="Nursery">Nursery</option>
           <option value="Primary">Primary</option>
+        </select>
+
+        {/* Parent Selection */}
+        <select
+          value={parentId}
+          onChange={(e) => setParentId(e.target.value)}
+          onFocus={fetchParents}
+          className="w-full rounded-lg border p-3"
+        >
+          <option value="">Select Parent (Optional)</option>
+
+          {parents.map((parent) => (
+            <option key={parent.id} value={parent.id}>
+              {parent.parent_name}
+            </option>
+          ))}
         </select>
 
         <button
@@ -229,6 +276,7 @@ export default function StudentManagement() {
               <th className="border p-3">Student Name</th>
               <th className="border p-3">Section</th>
               <th className="border p-3">Admission Date</th>
+              <th className="border p-3">Parent ID</th>
               <th className="border p-3">Action</th>
             </tr>
           </thead>
@@ -241,6 +289,9 @@ export default function StudentManagement() {
                 <td className="border p-3">{student.section}</td>
                 <td className="border p-3">
                   {student.admission_date ?? "Not provided"}
+                </td>
+                <td className="border p-3">
+                  {student.parent_id ?? "Not assigned"}
                 </td>
                 <td className="border p-3">
                   <div className="flex gap-2">
@@ -265,7 +316,7 @@ export default function StudentManagement() {
             {students.length === 0 && (
               <tr>
                 <td
-                  colSpan={5}
+                  colSpan={6}
                   className="p-4 text-center text-gray-500"
                 >
                   No student records to display.
